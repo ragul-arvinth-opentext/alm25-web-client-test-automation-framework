@@ -1,0 +1,72 @@
+[
+  {
+    "username": "saauthor",
+    "password": "",
+    "team": "Author team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_004",
+    "description": "Requirement created by Author team",
+    "criticality": "Medium",
+    "gxp": "Y"
+  },
+  {
+    "username": "sadev3",
+    "password": "",
+    "team": "Author team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_05",
+    "description": "Requirement created by another author",
+    "criticality": "High",
+    "gxp": "N"
+  },
+  {
+    "username": "sadev",
+    "password": "",
+    "team": "Business team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_06",
+    "description": "Business team test requirement",
+    "criticality": "High",
+    "gxp": "Y"
+  },
+  {
+    "username": "sadev2",
+    "password": "",
+    "team": "Business team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_07",
+    "description": "Requirement from sadev2 of Business team",
+    "criticality": "Medium",
+    "gxp": "N"
+  },
+  {
+    "username": "samanager",
+    "password": "",
+    "team": "Author team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_08",
+    "description": "Manager creating a requirement",
+    "criticality": "Low",
+    "gxp": "Y"
+  },
+  {
+    "username": "safa",
+    "password": "",
+    "team": "Fa Team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_09",
+    "description": "FA team requirement",
+    "criticality": "Medium",
+    "gxp": "Y"
+  },
+  {
+    "username": "fauser",
+    "password": "",
+    "team": "Fa Team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Mock_requirement_10",
+    "description": "Another FA team test case",
+    "criticality": "High",
+    "gxp": "N"
+  }
+]
