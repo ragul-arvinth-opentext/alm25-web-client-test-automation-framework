@@ -3,7 +3,7 @@ import pytest
 if __name__ == "__main__":
     pytest_args = [
         "-v",
-        "--maxfail=2",
+        "--maxfail=4",
         "--disable-warnings",
         "--html=reports/report.html",
         "--self-contained-html",

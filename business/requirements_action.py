@@ -15,12 +15,15 @@ class RequirementsActions:
 
         # Step 2: Expand Requirements tree
         self.req_page.expand_folder_if_collapsed("Requirements")
-
-        # Step 3: Click the folder from JSON
-        folder_element = self.page.get_by_label("Requirements Tree", exact=True).get_by_text(folder)
-        self.wait.wait_for_element(folder_element)
-        folder_element.click()
-
+        
+        # # Step 3: Click the folder from JSON
+        # folder_element = self.page.get_by_label("Requirements Tree", exact=True).get_by_text(folder)
+        # self.wait.wait_for_element(folder_element)
+        # folder_element.click()
+        self.req_page.go_to_requirements()
+        self.wait.wait_for_element(self.page.get_by_text(folder))
+        self.req_page.expand_folder_if_collapsed(folder)
+        self.req_page.click_folder(folder)
         # Step 4: If requirement with same name exists, skip creation
         if self.req_page.requirement_exists(name):
             return

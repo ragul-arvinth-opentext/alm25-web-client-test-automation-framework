@@ -5,68 +5,103 @@
     "team": "Author team",
     "folder_name": "new_sample_req",
     "requirement_name": "Mock_requirement_004",
-    "description": "Requirement created by Author team",
+    "description": "Author team initiates requirement; assigns to Business (2), FA (1), Author (1).",
     "criticality": "Medium",
-    "gxp": "Y"
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["SaDev", "SaDev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
   },
   {
     "username": "sadev3",
     "password": "",
     "team": "Author team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_05",
-    "description": "Requirement created by another author",
+    "requirement_name": "Mock_requirement_005",
+    "description": "Author sadev3 submits and assigns 2 Business, 1 FA, and 1 Author approver.",
     "criticality": "High",
-    "gxp": "N"
+    "gxp": "N",
+    "approvers": {
+      "team0": ["SaDev", "SaDev2"],
+      "team1": ["fauser"],
+      "team2": ["sadev3"]
+    }
   },
   {
     "username": "sadev",
     "password": "",
     "team": "Business team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_06",
-    "description": "Business team test requirement",
+    "requirement_name": "Mock_requirement_006",
+    "description": "Business team initiates; approval from Business (2), FA (1), Author (1).",
     "criticality": "High",
-    "gxp": "Y"
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["sadev", "sadev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
   },
   {
     "username": "sadev2",
     "password": "",
     "team": "Business team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_07",
-    "description": "Requirement from sadev2 of Business team",
+    "requirement_name": "Mock_requirement_007",
+    "description": "Business team member sadev2 assigns approval as per routing rule.",
     "criticality": "Medium",
-    "gxp": "N"
+    "gxp": "N",
+    "approvers": {
+      "team0": ["sadev", "sadev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
   },
   {
     "username": "samanager",
     "password": "",
     "team": "Author team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_08",
-    "description": "Manager creating a requirement",
+    "requirement_name": "Mock_requirement_008",
+    "description": "Manager (Author team) initiates and assigns Business, FA, and self as approver.",
     "criticality": "Low",
-    "gxp": "Y"
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["SaDev", "SaDev2"],
+      "team1": ["fauser"],
+      "team2": ["samanager"]
+    }
   },
   {
     "username": "safa",
     "password": "",
     "team": "Fa Team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_09",
-    "description": "FA team requirement",
+    "requirement_name": "Mock_requirement_009",
+    "description": "FA team member safa routes to Business (2), FA (self), Author (1).",
     "criticality": "Medium",
-    "gxp": "Y"
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["sadev", "SaDev2"],
+      "team1": ["safa"],
+      "team2": ["saauthor"]
+    }
   },
   {
     "username": "fauser",
     "password": "",
     "team": "Fa Team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_10",
-    "description": "Another FA team test case",
+    "requirement_name": "Mock_requirement_010",
+    "description": "FA user initiates eSig; approval needed from 2 Business, 1 FA, 1 Author.",
     "criticality": "High",
-    "gxp": "N"
+    "gxp": "N",
+    "approvers": {
+      "team0": ["sadev", "sadev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
   }
 ]

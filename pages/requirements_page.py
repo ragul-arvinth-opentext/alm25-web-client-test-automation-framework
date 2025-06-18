@@ -1,3 +1,5 @@
+from utilities.wait_utils import WaitUtils
+
 class RequirementsPage:
     def __init__(self, page):
         self.page = page
@@ -13,7 +15,17 @@ class RequirementsPage:
 
     def create_requirement_fields(self, name, desc, criticality, gxp):
         self.page.get_by_role("button", name="New Requirement").click()
-        self.page.get_by_role("textbox", name=" Name :").fill(name)
+
+        self.page.wait_for_selector("h2:has-text('New Requirement')")
+
+        WaitUtils(self.page).wait_for_dialog_title("New Requirement")
+
+        self.page.get_by_role("textbox", name="Name").fill(name)
+        self.page.get_by_label("Undefined", exact=True).get_by_role("button", name="Open").click()
+        self.page.get_by_label("Functional").click()
+
+        WaitUtils(self.page).wait_for_navigation()
+        
         self.page.get_by_role("combobox", name="Criticality :").click()
         self.page.get_by_label(criticality).click()
         self.page.get_by_role("combobox", name="GxP :").click()
