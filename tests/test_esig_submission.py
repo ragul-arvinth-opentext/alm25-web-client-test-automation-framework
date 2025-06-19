@@ -1,7 +1,7 @@
+import pytest
 from business.login_action import LoginActions
 from business.requirements_action import RequirementsActions
 from business.submisson_actions import SubmissionActions
-import pytest
 
 @pytest.mark.parametrize("user_data", [
     {
@@ -12,7 +12,8 @@ import pytest
         "requirement_name": data["requirement_name"],
         "description": data["description"],
         "criticality": data["criticality"],
-        "gxp": data["gxp"]
+        "gxp": data["gxp"],
+        "approvers": data.get("approvers", {})  # Safely include approvers
     } for data in __import__('json').load(open("test_data/test_data.json"))
 ])
 def test_esig_submission(browser_context, config, user_data):
@@ -32,4 +33,4 @@ def test_esig_submission(browser_context, config, user_data):
         gxp=user_data["gxp"]
     )
 
-    submit_business.submit_for_approval(team=user_data["team"])
+    submit_business.submit_esig_flow(user_data)

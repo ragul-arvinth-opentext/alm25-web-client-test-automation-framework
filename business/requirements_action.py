@@ -26,6 +26,7 @@ class RequirementsActions:
         self.req_page.click_folder(folder)
         # Step 4: If requirement with same name exists, skip creation
         if self.req_page.requirement_exists(name):
+            self.req_page.click_folder(name)
             return
 
         # Step 5: Create new requirement
