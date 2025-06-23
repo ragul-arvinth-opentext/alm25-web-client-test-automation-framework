@@ -24,6 +24,7 @@ class RequirementsActions:
         self.wait.wait_for_element(self.page.get_by_text(folder))
         self.req_page.expand_folder_if_collapsed(folder)
         self.req_page.click_folder(folder)
+        self.wait.wait_for_navigation()
         # Step 4: If requirement with same name exists, skip creation
         if self.req_page.requirement_exists(name):
             self.req_page.click_folder(name)

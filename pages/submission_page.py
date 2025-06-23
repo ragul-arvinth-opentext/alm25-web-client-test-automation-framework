@@ -1,3 +1,4 @@
+from utilities.wait_utils import WaitUtils
 class EsigPopup:
     def __init__(self, page):
         self.page = page
@@ -8,30 +9,31 @@ class EsigPopup:
 
     def get_frame(self):
         return self.page.frame_locator("iframe")
-    
-    
-    
-    def select_approvers(self, frame, approvers: dict):
-        iframe = self.page.frame_locator("iframe")
-    # `approvers` is a dictionary like: { "team0": ["SaDev", "SaDev2"], "team1": ["fauser"], "team2": ["saauthor"] }
-        # count = 0
-        # for team_id, values in approvers.items():
-        #     frame.locator(f"#team{count}").select_option(f"#{team_id}", values)
-        #     count+=1
-        iframe.locator("#team0").select_option(["SaDev", "SaDev2"])
-        iframe.locator("#team1").select_option("fauser")
-        iframe.locator("#team2").select_option("Samanager")
- 
 
-    
+    def select_approvers(self, frame, approvers: dict):
+        for team_id, approver_list in approvers.items():
+            dropdown = frame.locator(f"select#{team_id}")
+            WaitUtils(self.page).wait_for_navigation()
+            print(f"Selecting {approver_list} for {team_id}")
+            dropdown.select_option(approver_list)
+            #This is facing some issues not every time but sometimes, 
+            # so just check if u can run it a few times by changing the req names in the user_data
+        # frame.locator("#team0").select_option(["SaDev", "SaDev2"])
+        # frame.locator("#team1").select_option("fauser")
+        # frame.locator("#team2").select_option("Samanager")
 
     def fill_comment(self, frame, comment="Automated submission"):
         frame.locator("#comment").click()
         frame.locator("#comment").fill(comment)
-        self.page.get_by_label("Submit for Approval").locator("div").filter(has_text="Submit for Approval").click()
-
 
     def submit_popup(self, frame):
+    # Handle potential alert that may block frame actions
+        def handle_dialog(dialog):
+            print(f"Dialog appeared: {dialog.message}")
+            dialog.dismiss()
+
+        self.page.once("dialog", handle_dialog)
+
         self.page.get_by_label("Submit for Approval").locator("div").filter(has_text="Submit for Approval").click()
         frame.get_by_role("button", name="Submit").click()
 
