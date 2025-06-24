@@ -1,5 +1,15 @@
 import pytest
+import _pytest.terminal
 from playwright.sync_api import sync_playwright
+
+if not hasattr(_pytest.terminal.TerminalReporter, "_sessionstarttime"):
+    for attr in dir(_pytest.terminal.TerminalReporter):
+        if "start" in attr.lower():
+            print(f"🛠 Possible replacement for _sessionstarttime found: {attr}")
+
+    import time
+    _pytest.terminal.TerminalReporter._sessionstarttime = time.time()
+
 
 # Inline configuration dictionary
 CONFIG = {

@@ -5,8 +5,9 @@ if __name__ == "__main__":
         "-v",
         "--maxfail=4",
         "--disable-warnings",
-        "--html=reports/report.html",
-        "--self-contained-html",
+        "--html-report=./reports",
+        '--title="eSign Submission"',
         "tests/"
     ]
     pytest.main(pytest_args)
+
