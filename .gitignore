@@ -7,6 +7,10 @@ reports/
 # C extensions
 *.so
 
+# Output files from other test plugins
+output.json
+html-report/
+
 # Distribution / packaging
 .Python
 build/
