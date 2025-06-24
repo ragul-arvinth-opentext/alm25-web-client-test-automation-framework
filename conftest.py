@@ -1,5 +1,4 @@
 import pytest
-import json
 from playwright.sync_api import sync_playwright
 
 # Inline configuration dictionary
@@ -23,6 +22,4 @@ def browser_context():
         context.close()
         browser.close()
 
-@pytest.fixture(scope="function", params=json.load(open("test_data/test_data.json")))
-def test_user_data(request):
-    return request.param
+
