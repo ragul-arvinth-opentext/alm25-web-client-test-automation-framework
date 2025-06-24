@@ -16,11 +16,6 @@ class EsigPopup:
             WaitUtils(self.page).wait_for_navigation()
             print(f"Selecting {approver_list} for {team_id}")
             dropdown.select_option(approver_list)
-            #This is facing some issues not every time but sometimes, 
-            # so just check if u can run it a few times by changing the req names in the user_data
-        # frame.locator("#team0").select_option(["SaDev", "SaDev2"])
-        # frame.locator("#team1").select_option("fauser")
-        # frame.locator("#team2").select_option("Samanager")
 
     def fill_comment(self, frame, comment="Automated submission"):
         frame.locator("#comment").click()

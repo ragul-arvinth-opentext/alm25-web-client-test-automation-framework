@@ -1,10 +1,9 @@
 [
   {
     "username": "saauthor",
-    "password": "",
     "team": "Author team",
     "folder_name": "new_sample_req",
-    "requirement_name": "hghjgsdf",
+    "requirement_name": "mock01",
     "description": "Author team initiates requirement; assigns to Business (2), FA (1), Author (1).",
     "criticality": "Medium",
     "gxp": "Y",
@@ -16,10 +15,9 @@
   },
   {
     "username": "sadev3",
-    "password": "",
     "team": "Author team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_1112",
+    "requirement_name": "mock02",
     "description": "Author sadev3 submits and assigns 2 Business, 1 FA, and 1 Author approver.",
     "criticality": "High",
     "gxp": "N",
@@ -31,10 +29,9 @@
   },
   {
     "username": "sadev",
-    "password": "",
     "team": "Business team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_006",
+    "requirement_name": "mock3",
     "description": "Business team initiates; approval from Business (2), FA (1), Author (1).",
     "criticality": "High",
     "gxp": "Y",
@@ -46,10 +43,9 @@
   },
   {
     "username": "sadev2",
-    "password": "",
     "team": "Business team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_007",
+    "requirement_name": "mock4",
     "description": "Business team member sadev2 assigns approval as per routing rule.",
     "criticality": "Medium",
     "gxp": "N",
@@ -61,22 +57,20 @@
   },
   {
     "username": "samanager",
-    "password": "",
     "team": "Author team",
     "folder_name": "new_sample_req",
-    "requirement_name": "Mock_requirement_003",
+    "requirement_name": "mock5",
     "description": "Manager (Author team) initiates and assigns Business, FA, and self as approver.",
     "criticality": "Low",
     "gxp": "Y",
     "approvers": {
       "team0": ["SaDev", "SaDev2"],
       "team1": ["fauser"],
-      "team2": ["samanager"]
+      "team2": ["Samanager"]
     }
   },
   {
     "username": "safa",
-    "password": "",
     "team": "Fa Team",
     "folder_name": "new_sample_req",
     "requirement_name": "Mock_requirement_009",
@@ -91,7 +85,6 @@
   },
   {
     "username": "fauser",
-    "password": "",
     "team": "Fa Team",
     "folder_name": "new_sample_req",
     "requirement_name": "Mock_requirement_010",

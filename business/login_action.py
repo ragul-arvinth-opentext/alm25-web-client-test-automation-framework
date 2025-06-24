@@ -7,8 +7,8 @@ class LoginActions:
         self.login_page = LoginPage(page)
         self.wait = WaitUtils(page)
 
-    def login(self, username, password):
-        self.page.goto("https://almqa503.aws.swinfra.net:8443/qcbin/webrunner/#/login")
+    def login(self, username, password, base_url):
+        self.page.goto(base_url)
         self.login_page.enter_username(username)
         self.login_page.enter_password(password)
         self.login_page.click_authenticate()

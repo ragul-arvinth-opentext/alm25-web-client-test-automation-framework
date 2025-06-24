@@ -1,6 +1,7 @@
 from pages.requirements_page import RequirementsPage
 from utilities.wait_utils import WaitUtils
 
+
 class RequirementsActions:
     def __init__(self, page):
         self.page = page
@@ -8,31 +9,18 @@ class RequirementsActions:
         self.wait = WaitUtils(page)
 
     def create_requirement_if_not_exists(self, folder, name, desc, criticality, gxp):
-        # Step 1: Go to Requirements module
-        requirements_link = self.page.get_by_role("link", name="Requirements")
-        self.wait.wait_for_element(requirements_link)
-        requirements_link.click()
+        self.req_page.go_to_requirements_module()
+        self.req_page.expand_folder("Requirements")
+        self.req_page.expand_folder(folder)
+        self.req_page.open_folder(folder)
 
-        # Step 2: Expand Requirements tree
-        self.req_page.expand_folder_if_collapsed("Requirements")
-        
-        # # Step 3: Click the folder from JSON
-        # folder_element = self.page.get_by_label("Requirements Tree", exact=True).get_by_text(folder)
-        # self.wait.wait_for_element(folder_element)
-        # folder_element.click()
-        self.req_page.go_to_requirements()
-        self.wait.wait_for_element(self.page.get_by_text(folder))
-        self.req_page.expand_folder_if_collapsed(folder)
-        self.req_page.click_folder(folder)
-        self.wait.wait_for_navigation()
-        # Step 4: If requirement with same name exists, skip creation
         if self.req_page.requirement_exists(name):
-            self.req_page.click_folder(name)
+            self.req_page.open_existing_requirement(name)
             return
 
-        # Step 5: Create new requirement
-        self.req_page.create_requirement_fields(name, desc, criticality, gxp)
-        self.req_page.click_submit()
+        self.req_page.open_new_requirement_form()
+        self.req_page.fill_requirement_fields(name, desc, criticality, gxp)
+        self.req_page.submit_requirement()
 
     def verify_phase_draft(self):
         self.wait.wait_until_value(self.req_page.get_phase_combobox(), "Draft")
