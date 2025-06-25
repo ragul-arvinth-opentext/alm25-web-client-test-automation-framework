@@ -1,11 +1,16 @@
 from utilities.wait_utils import WaitUtils
+from utilities.constants import (
+    BUTTON_SUBMIT_FOR_APPROVAL,
+    BUTTON_ESIGN,
+    SUBMIT_FOR_APPROVAL_LABEL 
+)
 class EsigPopup:
     def __init__(self, page):
         self.page = page
 
     def open_esig_popup(self):
-        self.page.get_by_role("button", name="Esig").click()
-        self.page.get_by_text("Submit for Approval").click()
+        self.page.get_by_role("button", name=BUTTON_ESIGN).click()
+        self.page.get_by_text(BUTTON_SUBMIT_FOR_APPROVAL).click()
 
     def get_frame(self):
         return self.page.frame_locator("iframe")

@@ -1,4 +1,13 @@
 from utilities.wait_utils import WaitUtils
+from utilities.constants import (
+    REQUIREMENTS_MODULE,
+    FUNCTIONAL_CATEGORY,
+    UNDEFINED_LABEL,
+    BUTTON_NEW_REQUIREMENT,
+    BUTTON_SUBMIT,
+    NEW_REQUIREMENT_DIALOG_TITLE
+    
+)
 
 class RequirementsPage:
     def __init__(self, page):
@@ -6,7 +15,7 @@ class RequirementsPage:
         self.wait = WaitUtils(page)
 
     def go_to_requirements_module(self):
-        link = self.page.get_by_role("link", name="Requirements")
+        link = self.page.get_by_role("link", name=REQUIREMENTS_MODULE)
         self.wait.wait_for_element(link)
         link.click()
 
@@ -27,13 +36,13 @@ class RequirementsPage:
                 req_locator = tree_locator.get_by_text(req_name, exact=True)
                 req_locator.scroll_into_view_if_needed(timeout=3000)
                 req_locator.wait_for(timeout=2000)
-                print(f"✅ Requirement '{req_name}' found after scroll.")
+                print(f"Requirement '{req_name}' found after scroll.")
                 return True
             except:
                 self.page.keyboard.press("PageDown")  # Scroll down manually as fallback
                 self.page.wait_for_timeout(500)
 
-        print(f"❌ Requirement '{req_name}' not found after scrolling.")
+        print(f"Requirement '{req_name}' not found after scrolling.")
         return False
 
 
@@ -41,14 +50,14 @@ class RequirementsPage:
         self.page.get_by_text(req_name).click()
 
     def open_new_requirement_form(self):
-        self.page.get_by_role("button", name="New Requirement").click()
-        self.page.wait_for_selector("h2:has-text('New Requirement')")
-        self.wait.wait_for_dialog_title("New Requirement")
+        self.page.get_by_role("button", name=BUTTON_NEW_REQUIREMENT).click()
+        # self.page.wait_for_selector("h2:has-text('{NEW_REQUIREMENT_DIALOG_TITLE}')")
+        self.wait.wait_for_dialog_title(NEW_REQUIREMENT_DIALOG_TITLE)
 
     def fill_requirement_fields(self, name, desc, criticality, gxp):
         self.page.get_by_role("textbox", name="Name").fill(name)
-        self.page.get_by_label("Undefined", exact=True).get_by_role("button", name="Open").click()
-        self.page.get_by_label("Functional").click()
+        self.page.get_by_label(UNDEFINED_LABEL, exact=True).get_by_role("button", name="Open").click()
+        self.page.get_by_label(FUNCTIONAL_CATEGORY).click()
         self.wait.wait_for_navigation()
 
         self.page.get_by_role("combobox", name="Criticality :").click()
@@ -58,7 +67,7 @@ class RequirementsPage:
         self.page.get_by_role("application").get_by_label("Description").fill(desc)
 
     def submit_requirement(self):
-        self.page.get_by_role("button", name="Submit").click()
+        self.page.get_by_role("button", name=BUTTON_SUBMIT).click()
 
     def get_phase_combobox(self):
         return self.page.get_by_role("combobox", name="Phase :")

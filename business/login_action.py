@@ -1,5 +1,6 @@
 from utilities.wait_utils import WaitUtils
 from pages.login_page import LoginPage
+from utilities.env_utils import EnvUtils
 
 class LoginActions:
     def __init__(self, page):
@@ -8,6 +9,7 @@ class LoginActions:
         self.wait = WaitUtils(page)
 
     def login(self, username, password, base_url):
+        base_url = EnvUtils.get_base_url()
         self.page.goto(base_url)
         self.login_page.enter_username(username)
         self.login_page.enter_password(password)

@@ -1,6 +1,13 @@
 from pages.submission_page import EsigPopup
 from utilities.wait_utils import WaitUtils
-from playwright.sync_api import expect, TimeoutError as PlaywrightTimeoutError
+from utilities.constants import(
+    PHASE_APPROVED,
+    PHASE_DRAFT,
+    PHASE_REJECTED,
+    PHASE_ROUTING,
+    PHASE_CANCELLED
+)
+
 
 class SubmissionActions:
     def __init__(self, page):
@@ -20,29 +27,29 @@ class SubmissionActions:
 
             # Check the current phase value
             phase_value = frame.locator("#phases").input_value()
-            print(f"🌀 Detected phase: {phase_value}")
+            print(f" Detected phase: {phase_value}")
 
-            if phase_value == "Routing For Approval(s)":
-                print("✅ Phase is 'Draft' → Submitting for approval")
+            if phase_value == PHASE_ROUTING:
+                print(" Phase is 'Draft' → Submitting for approval")
                 self.popup.fill_comment(frame, comment="Submitting for approval")
                 self.popup.submit_popup(frame)
                 self.wait.wait_until_value(self.popup.get_phase_combobox(), "Routing For Approval(s)")
                 attempts += 1
                 continue  # Go back and reopen popup for approval assignment
 
-            elif phase_value == "Approved":
-                print("✅ Phase is 'Approved' → Assigning approvers")
+            elif phase_value == PHASE_APPROVED:
+                print(" Phase is 'Approved' → Assigning approvers")
                 self.popup.select_approvers(frame, user_data["approvers"])
                 self.popup.fill_comment(frame, comment="Assigning approvers")
                 self.popup.submit_popup(frame)
                 break  # Done
 
-            elif phase_value == "Canceled":
-                print("❌ Submission rejected: No rule defined or unauthorized user")
+            elif phase_value == PHASE_CANCELLED:
+                print("Submission rejected: No rule defined or unauthorized user")
                 break
 
             else:
-                raise Exception(f"❌ Unknown eSig phase: '{phase_value}' — cannot proceed.")
+                raise Exception(f" Unknown eSig phase: '{phase_value}' — cannot proceed.")
 
         else:
-            print("⚠️ Max submission attempts reached without successful approval flow.")
+            print(" Max submission attempts reached without successful approval flow.")
