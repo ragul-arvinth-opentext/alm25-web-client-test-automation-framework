@@ -1,0 +1,44 @@
+[
+  {
+    "username": "saauthor",
+    "team": "Author team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Demo-Test-Req-01",
+    "description": "Author team initiates requirement; assigns to Business (2), FA (1), Author (1).",
+    "criticality": "Medium",
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["SaDev", "SaDev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
+  },
+  {
+    "username": "sadev3",
+    "team": "Author team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Demo-Test-Req-01",
+    "description": "Author sadev3 submits and assigns 2 Business, 1 FA, and 1 Author approver. [Negative Test case]",
+    "criticality": "Medium",
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["SaDev", "SaDev2"],
+      "team1": ["fauser"],
+      "team2": ["sadev3"]
+    }
+  },
+  {
+    "username": "sadev",
+    "team": "Business team",
+    "folder_name": "new_sample_req",
+    "requirement_name": "Demo-Test-Req-2",
+    "description": "Business team initiates; approval from Business (2), FA (1), Author (1).",
+    "criticality": "High",
+    "gxp": "Y",
+    "approvers": {
+      "team0": ["sadev", "sadev2"],
+      "team1": ["fauser"],
+      "team2": ["saauthor"]
+    }
+  }
+]
