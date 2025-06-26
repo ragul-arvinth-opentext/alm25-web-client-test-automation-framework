@@ -10,7 +10,8 @@ def run_tests():
         "--maxfail=4",
         "--disable-warnings",
         f"--alluredir={allure_results_dir}",
-        "tests/"
+        "tests/"#common to run all the tests
+        # "tests/test_esig_submission.py"#Run only the test_esig_submisson
     ]
 
     result = pytest.main(pytest_args)
