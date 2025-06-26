@@ -1,4 +1,10 @@
 # ---------------------------
+# Dashboard Title
+# ---------------------------
+
+AQM_DASHBOARD_TITLE = "Application Quality ManagementCE 25.1"
+
+# ---------------------------
 # Requirements Module Labels
 # ---------------------------
 
@@ -14,7 +20,7 @@ PHASE_ROUTING = "Routing For Approval(s)"
 
 PHASE_APPROVED = "Approved"
 PHASE_REJECTED = "Rejected"
-PHASE_CANCELLED = "Canceled"
+PHASE_CANCELLED = "Cancelled"
 
 # ---------------------------
 # Buttons and Actions

@@ -23,30 +23,29 @@ if not hasattr(_pytest.terminal.TerminalReporter, "_sessionstarttime"):
 def browser_context(request):
     """Launches browser and captures screenshot on failure."""
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)  # Change to headless=True if needed
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context(ignore_https_errors=True)
         page = context.new_page()
         yield page
 
-        # After test — if it failed, take screenshot
-        if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
-            screenshot_dir = Path("reports/screenshots")
+        rep = getattr(request.node, "rep_call", None)
+        if rep and rep.failed:
+            screenshot_dir = Path("reports") / "screenshots"
             screenshot_dir.mkdir(parents=True, exist_ok=True)
 
-            timestamp = datetime.now().strftime("%Y-%m-%d%H-%M-%S")
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f"{request.node.name}_{timestamp}.png"
             filepath = screenshot_dir / filename
 
-            # Take screenshot
-            page.screenshot(path=str(filepath), full_page=True)
-
-            # Attach to Allure
-            with open(filepath, "rb") as f:
-                allure.attach(
-                    f.read(),
-                    name="screenshot",
+            try:
+                page.screenshot(path=str(filepath), full_page=True)
+                allure.attach.file(
+                    source=str(filepath),
+                    name="Failure Screenshot",
                     attachment_type=allure.attachment_type.PNG
                 )
+            except Exception as e:
+                print(f"[!] Screenshot capture failed: {e}")
 
         context.close()
         browser.close()
@@ -55,9 +54,12 @@ def browser_context(request):
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     """
-    Make the test result available to fixtures using item.rep_call.
+    Hook to propagate test result to the request object so it can be accessed in fixture teardown.
     """
     outcome = yield
     rep = outcome.get_result()
-    setattr(item, f"rep{call.when}", rep)
+    setattr(item, f"rep_{call.when}", rep)
+
+    if call.when == "call":
+        item.rep_call = rep
 
