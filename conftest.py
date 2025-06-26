@@ -1,23 +1,23 @@
+"""
+Pytest configuration and fixtures for web automation testing.
+Provides browser context management and screenshot capture on test failures.
+"""
+
+# Standard library imports
 import time
+from pathlib import Path
+from datetime import datetime
+
+# Third-party imports
 import pytest
 import allure
 import _pytest.terminal
-from pathlib import Path
-from datetime import datetime
 from playwright.sync_api import sync_playwright
 
+# Module-level initialization
 if not hasattr(_pytest.terminal.TerminalReporter, "_sessionstarttime"):
     _pytest.terminal.TerminalReporter._sessionstarttime = time.time()
 
-CONFIG = {
-    "base_url": "https://almqa503.aws.swinfra.net:8443/qcbin/webrunner/#/login",
-    "default_timeout": 5000
-}
-
-@pytest.fixture(scope="function")
-def config():
-    """Returns global configuration values."""
-    return CONFIG
 
 @pytest.fixture(scope="function")
 def browser_context(request):
@@ -33,7 +33,7 @@ def browser_context(request):
             screenshot_dir = Path("reports/screenshots")
             screenshot_dir.mkdir(parents=True, exist_ok=True)
 
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            timestamp = datetime.now().strftime("%Y-%m-%d%H-%M-%S")
             filename = f"{request.node.name}_{timestamp}.png"
             filepath = screenshot_dir / filename
 
@@ -59,4 +59,5 @@ def pytest_runtest_makereport(item, call):
     """
     outcome = yield
     rep = outcome.get_result()
-    setattr(item, f"rep_{call.when}", rep)
+    setattr(item, f"rep{call.when}", rep)
+
